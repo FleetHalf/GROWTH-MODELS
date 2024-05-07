@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Solow Diagram Simulation</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        body {
+            text-align: center; /* Center align the contents */
+            background-color: #f9f9f9; /* Change background color */
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Change font */
+        }
+    
+        h1 {
+            color: #333; /* Change heading color */
+        }
+    
+        #chart svg {
+            width: 800px; /* Enlarge the graph */
+            height: 600px;
+        }
+    
+        .axis text {
+            font-size: 14px; /* Enlarge axes labels */
+        }
+    
+        .axis path,
+        .axis line {
+            stroke: #000; /* Change axis color */
+        }
+    
+        .line.prodcurve {
+            stroke: steelblue; /* Change curve colors */
+        }
+    
+        .line.investcurve {
+            stroke: green;
+        }
+    
+        .line.steadystate {
+            stroke: red;
+        }
+    
+        .currentK {
+            fill: black; /* Change circle colors */
+        }
+    
+        .currentY {
+            fill: orange;
+        }
+    
+        .currentS {
+            fill: purple;
+        }
+    
+        .currentNDelta {
+            fill: brown;
+        }
+    
+        .k_dot_text,
+        .k_eq_text {
+            font-size: 14px; /* Enlarge text size */
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Solow Diagram Simulation</h1>
+    <body>
+        <body>
+            <div id="chart" style="display: inline-block;"></div>
+            <div id="inputs" style="display: inline-block; vertical-align: top; margin-left: 20px;">
+                <div>
+                    <label for="alpha">Alpha (α):</label>
+                    <input type="number" id="alpha" min="0" max="1" step="0.01" value="0.3">
+                </div>
+                <div>
+                    <label for="K">Capital (K):</label>
+                    <input type="number" id="K" min="1" max="5" step="1" value="2">
+                </div>
+                <div>
+                    <label for="L">Labor (L):</label>
+                    <input type="number" id="L" min="1" max="100" step="1" value="10">
+                </div>
+                <div>
+                    <label for="w">Wage Rate (w):</label>
+                    <input type="number" id="w" min="10" max="25" step="0.01" value="15">
+                </div>
+                <div>
+                    <label for="s">Savings Rate (s):</label>
+                    <input type="number" id="s" min="1" max="100" step="1" value="20">
+                </div>
+                <div>
+                    <label for="n">Population Growth Rate (n):</label>
+                    <input type="number" id="n" min="1" max="35" step="1" value="10">
+                </div>
+            </div>
+        
+            <!-- Remaining code -->
+        </body>
+        
+    
+
+    <script>
+        const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+        const width = 600 - margin.left - margin.right;
+        const height = 400 - margin.top - margin.bottom;
+
+        const svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        const xScale = d3.scaleLinear()
+            .range([0, width]);
+
+        const yScale = d3.scaleLinear()
+            .range([height, 0]);
+
+        const xAxis = d3.axisBottom(xScale);
+        const yAxis = d3.axisLeft(yScale);
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", `translate(0, ${height})`)
+            .call(xAxis);
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", height + margin.bottom - 5)
+            .style("text-anchor", "middle")
+            .text("Capital per Worker (k)");
+
+        svg.append("text")
+            .attr("x", -height / 2)
+            .attr("y", -margin.left + 15)
+            .attr("transform", "rotate(-90)")
+            .style("text-anchor", "middle")
+            .text("Output per Worker (y)");
+
+        const productioncurve = d3.line()
+            .x(d => xScale(d.k))
+            .y(d => yScale(d.y));
+
+        const investmentcurve = d3.line()
+            .x(d => xScale(d.k))
+            .y(d => yScale(d.s));
+
+        const steadystatecurve = d3.line()
+            .x(d => xScale(d.k))
+            .y(d => yScale(d.n_delta));
+
+        const updateChart = () => {
+            const alpha = parseFloat(d3.select("#alpha").property("value"));
+            const K = parseInt(d3.select("#K").property("value"));
+            const L = parseInt(d3.select("#L").property("value"));
+            const w = parseFloat(d3.select("#w").property("value"));
+            const s = parseFloat(d3.select("#s").property("value")) / 100;
+            const n = parseFloat(d3.select("#n").property("value")) / 100;
+            const delta = 0.05;
+            const r = 125;
+
+            const Y = Math.pow(K, alpha) * Math.pow(L, 1 - alpha);
+            const y = Y / L;
+            const k = K / L;
+            const k_dot = s * y - (n + delta) * k;
+
+            const data = [];
+            const k_range = d3.range(0.01, 5.01, 0.01);
+
+            k_range.forEach(k_value => {
+                const y_value = Math.pow(k_value, alpha);
+                const s_value = s * Math.pow(k_value, alpha);
+                const n_delta_value = (n + delta) * k_value;
+                data.push({ k: k_value, y: y_value, s: s_value, n_delta: n_delta_value });
+            });
+
+            xScale.domain(d3.extent(data, d => d.k));
+            yScale.domain([0, d3.max(data, d => Math.max(d.y, d.s, d.n_delta))]);
+
+            svg.select(".x.axis")
+                .transition()
+                .call(xAxis);
+
+            svg.select(".y.axis")
+                .transition()
+                .call(yAxis);
+
+            const prodcurvePath = svg.selectAll(".prodcurve")
+                .data([data])
+                .join("path")
+                .attr("class", "line prodcurve")
+                .attr("d", productioncurve)
+                .attr("stroke", "steelblue")
+                .attr("fill", "none");
+
+            const investcurvePath = svg.selectAll(".investcurve")
+                .data([data])
+                .join("path")
+                .attr("class", "line investcurve")
+                .attr("d", investmentcurve)
+                .attr("stroke", "green")
+                .attr("fill", "none");
+
+            const steadystatePath = svg.selectAll(".steadystate")
+                .data([data])
+                .join("path")
+                .attr("class", "line steadystate")
+                .attr("d", steadystatecurve)
+                .attr("stroke", "red")
+                .attr("fill", "none");
+
+            const currentK = svg.selectAll(".currentK")
+                .data([{ k: k }])
+                .join("line")
+                .attr("class", "currentK")
+                .attr("x1", d => xScale(d.k))
+                .attr("x2", d => xScale(d.k))
+                .attr("y1", 0)
+                .attr("y2", height)
+                .attr("stroke", "black")
+                .attr("stroke-dasharray", "5,5");
+
+            const annotation = svg.selectAll(".annotation")
+                .data([{ k: k, k_dot: k_dot }])
+                .join("text")
+                .attr("class", "annotation")
+                .attr("x", width * 0.1)
+                .attr("y", height * 0.9)
+                .text(d => {
+                    if (d.k_dot > 0) {
+                        return "Capital deepening";
+                    } else if (d.k_dot < 0) {
+                        return "Capital widening";
+                    } else {
+                        return "Steady state";
+                    }
+                });
+        };
+
+        d3.selectAll("input")
+            .on("input", updateChart);
+
+        updateChart();
+</script>
+</body>
+</html>
