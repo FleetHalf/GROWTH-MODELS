@@ -3,15 +3,40 @@
 <head>
   <title>Growth Model Simulations</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">  </head>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Add left alignment for the entire page except the nav */
+    body, .text-center, p {
+      text-align: left;
+    }
+
+    /* Optional: Add margin to the left for better readability */
+    .nav-links li {
+      margin-left: 20px;
+    }
+  </style>
+</head>
 <body>
   <nav>
-    <a href="/">Home</a>
-    <a href="Growth2.html">Basic Solow Model Simulation</a>
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Growth Simulations</a>
+      <div class="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="Growth2.html">Basic Solow Model Simulation</a></li>
+      </ul>
+    </div>
   </nav>
-  <h1 id="home" class="text-center">  <i class="fas fa-chart-line"></i>  <strong>Growth Model Simulations</strong>
+
+  <h1 id="home" class="text-center">
+    <i class="fas fa-chart-line"></i> <strong>Growth Model Simulations</strong>
   </h1>
-  <p>
+
+  <p class="text-left">
+
     <strong>Understanding Economic Growth Through Models:</strong> Economic growth, measured by the increase in a nation's Gross Domestic Product (GDP) per capita over time, is a central concern for policymakers and economists. To understand the factors driving growth and predict its future trajectory, economists rely on growth models. These are mathematical frameworks that capture the key relationships between variables believed to influence economic expansion.
 
     Types of Growth Models: Growth models can be broadly classified into two categories:

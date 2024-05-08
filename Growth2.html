@@ -3,73 +3,17 @@
 <head>
     <title>Solow Diagram Simulation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        body {
-            text-align: center;
-            background-color: #f9f9f9;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        #chart svg {
-            width: 800px;
-            height: 600px;
-        }
-
-        .axis text {
-            font-size: 14px;
-        }
-
-        .axis path,
-        .axis line {
-            stroke: #000;
-        }
-
-        .line.prodcurve {
-            stroke: steelblue;
-        }
-
-        .line.investcurve {
-            stroke: green;
-        }
-
-        .line.steadystate {
-            stroke: red;
-        }
-
-        .currentK {
-            fill: black;
-        }
-
-        .currentY {
-            fill: orange;
-        }
-
-        .currentS {
-            fill: purple;
-        }
-
-        .currentNDelta {
-            fill: brown;
-        }
-
-        .k_dot_text,
-        .k_eq_text {
-            font-size: 14px;
-        }
-        
-    </style>
+    
 </head>
 <body>
-    <nav>
-       <a href="index.html">Home</a>
+    <nav style="text-align: right;">
+        <a href="index.html" style="color: white;">Home</a>
     </nav>
+    
     <h1>SOLOW DIAGRAM SIMULATION</h1>
     <div id="chart" style="display: inline-block;"></div>
     <div id="inputs" style="display: inline-block; vertical-align: top; margin-left: 20px;">
@@ -105,6 +49,39 @@
         <p>Capital per worker: \(k = \frac{K}{L}\)</p>
         <p>Capital accumulation equation: \(\dot{k} = sy - (n + \delta)k\)</p>
         <p>Steady-state condition: \(sk^{\alpha} = (n + \delta)k\)</p>
+    </div>
+    
+    <div id="explanation" style="margin-top: 40px;">
+        <h2>Understanding the Solow Model</h2>
+        <ol>
+            <li>
+                <p>The Solow model is a neoclassical growth model that describes the sources of economic growth and the factors that determine the steady-state levels of capital, output, and consumption per worker.</p>
+            </li>
+            <li>
+                <p>Steady state: In the steady state, the capital stock and output per worker are constant over time. This occurs when the investment per worker curve (sk^α) intersects the 45-degree line ((n + δ)k).</p>
+            </li>
+            <li>
+                <p>Capital deepening: If the investment per worker curve (sk^α) lies above the 45-degree line ((n + δ)k), the economy is experiencing capital deepening, where the capital stock per worker is increasing over time.</p>
+            </li>
+            <li>
+                <p>Capital widening: If the investment per worker curve (sk^α) lies below the 45-degree line ((n + δ)k), the economy is experiencing capital widening, where the capital stock per worker is decreasing over time.</p>
+            </li>
+            <li>
+                <p>Interpreting the values:
+                    <ul>
+                        <li>k: Capital per worker</li>
+                        <li>y: Output per worker</li>
+                        <li>α (alpha): The output elasticity of capital, representing the percentage change in output for a given percentage change in capital input</li>
+                        <li>s: The savings rate, determining the fraction of output invested in capital formation</li>
+                        <li>n: The population growth rate, affecting the growth rate of the labor force</li>
+                        <li>δ (delta): The depreciation rate of capital</li>
+                    </ul>
+                </p>
+            </li>
+            <li>
+                <p>Example: Suppose an economy has α = 0.3, K = 3, L = 20, w = 18, s = 25%, and n = 5%. With these values, the steady-state output per worker (y) is approximately 1.45, and the steady-state capital per worker (k) is around 2.9. If the capital per worker is below 2.9, the economy will experience capital deepening until it reaches the steady state.</p>
+            </li>
+        </ol>
     </div>
 
     <script>
