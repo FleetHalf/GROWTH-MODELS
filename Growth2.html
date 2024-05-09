@@ -88,6 +88,7 @@
         const margin = { top: 40, right: 40, bottom: 60, left: 60 };
         const width = 800 - margin.left - margin.right;
         const height = 600 - margin.top - margin.bottom;
+        const transitionDuration = 2000; // 2 seconds transition duration
 
         const svg = d3.select("#chart")
             .append("svg")
@@ -114,6 +115,7 @@
             .attr("class", "y axis")
             .call(yAxis);
 
+
         svg.append("text")
             .attr("x", width / 2)
             .attr("y", height + margin.bottom - 10)
@@ -127,19 +129,19 @@
             .style("text-anchor", "middle")
             .text("Output per Worker (y)");
 
-        const productioncurve = d3.line()
-            .x(d => xScale(d.k))
-            .y(d => yScale(d.y));
+            const productioncurve = d3.line()
+                .x(d => xScale(d.k))
+                .y(d => yScale(d.y));
 
-        const investmentcurve = d3.line()
-            .x(d => xScale(d.k))
-            .y(d => yScale(d.s));
+            const investmentcurve = d3.line()
+                .x(d => xScale(d.k))
+                .y(d => yScale(d.s));
 
-        const steadystatecurve = d3.line()
-            .x(d => xScale(d.k))
-            .y(d => yScale(d.n_delta));
+            const steadystatecurve = d3.line()
+                .x(d => xScale(d.k))
+                .y(d => yScale(d.n_delta));
 
-        const updateChart = () => {
+            const updateChart = () => {
             const alpha = parseFloat(d3.select("#alpha").property("value"));
             const K = parseInt(d3.select("#K").property("value"));
             const L = parseInt(d3.select("#L").property("value"));
@@ -169,10 +171,14 @@
 
             svg.select(".x.axis")
                 .transition()
+                .duration(transitionDuration)
                 .call(xAxis);
-                svg.select(".y.axis")
-            .transition()
-            .call(yAxis);
+            
+            svg.select(".y.axis")
+                .transition()
+                .duration(transitionDuration)
+                .call(yAxis);
+
 
         const prodcurvePath = svg.selectAll(".prodcurve")
             .data([data])
@@ -180,25 +186,46 @@
             .attr("class", "line prodcurve")
             .attr("d", productioncurve)
             .attr("stroke", "steelblue")
-            .attr("fill", "none");
+            .attr("fill", "none")
+            .transition()
+            .duration(transitionDuration)
+            .attrTween("d", function (d) {
+                const previous = d3.select(this).attr("d");
+                const current = productioncurve(d);
+                return d3.interpolatePath(previous, current);
+           });
 
-        const investcurvePath = svg.selectAll(".investcurve")
+           const investcurvePath = svg.selectAll(".investcurve")
             .data([data])
             .join("path")
             .attr("class", "line investcurve")
             .attr("d", investmentcurve)
             .attr("stroke", "green")
-            .attr("fill", "none");
+            .attr("fill", "none")
+            .transition()
+            .duration(transitionDuration)
+            .attrTween("d", function (d) {
+                const previous = d3.select(this).attr("d");
+                const current = investmentcurve(d);
+                return d3.interpolatePath(previous, current);
+           });
 
-        const steadystatePath = svg.selectAll(".steadystate")
+           const steadystatePath = svg.selectAll(".steadystate")
             .data([data])
             .join("path")
             .attr("class", "line steadystate")
             .attr("d", steadystatecurve)
             .attr("stroke", "red")
-            .attr("fill", "none");
+            .attr("fill", "none")
+            .transition()
+            .duration(transitionDuration)
+            .attrTween("d", function (d) {
+                const previous = d3.select(this).attr("d");
+                const current = steadystatecurve(d);
+                return d3.interpolatePath(previous, current);
+           });
 
-        const currentK = svg.selectAll(".currentK")
+           const currentK = svg.selectAll(".currentK")
             .data([{ k: k }])
             .join("line")
             .attr("class", "currentK")
@@ -207,9 +234,13 @@
             .attr("y1", 0)
             .attr("y2", height)
             .attr("stroke", "black")
-            .attr("stroke-dasharray", "5,5");
+            .attr("stroke-dasharray", "5,5")
+            .transition()
+            .duration(transitionDuration)
+            .attr("x1", d => xScale(d.k))
+            .attr("x2", d => xScale(d.k));
 
-        const annotation = svg.selectAll(".annotation")
+            const annotation = svg.selectAll(".annotation")
             .data([{ k: k, k_dot: k_dot }])
             .join("text")
             .attr("class", "annotation")
@@ -224,7 +255,7 @@
                     return "Steady state";
                 }
             });
-    };
+   };
 
     d3.selectAll("input")
         .on("input", updateChart);
