@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Solow Diagram Simulation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -7,13 +8,14 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
+
 </head>
+
 <body>
     <nav style="text-align: right;">
         <a href="index.html" style="color: white;">Home</a>
     </nav>
-    
+
     <h1>SOLOW DIAGRAM SIMULATION</h1>
     <div id="chart" style="display: inline-block;"></div>
     <div id="inputs" style="display: inline-block; vertical-align: top; margin-left: 20px;">
@@ -50,36 +52,47 @@
         <p>Capital accumulation equation: \(\dot{k} = sy - (n + \delta)k\)</p>
         <p>Steady-state condition: \(sk^{\alpha} = (n + \delta)k\)</p>
     </div>
-    
+
     <div id="explanation" style="margin-top: 40px;">
         <h2>Understanding the Solow Model</h2>
         <ol>
             <li>
-                <p>The Solow model is a neoclassical growth model that describes the sources of economic growth and the factors that determine the steady-state levels of capital, output, and consumption per worker.</p>
+                <p>The Solow model is a neoclassical growth model that describes the sources of economic growth and the
+                    factors that determine the steady-state levels of capital, output, and consumption per worker.</p>
             </li>
             <li>
-                <p>Steady state: In the steady state, the capital stock and output per worker are constant over time. This occurs when the investment per worker curve (sk^α) intersects the 45-degree line ((n + δ)k).</p>
-            </li>
-            <li>
-                <p>Capital deepening: If the investment per worker curve (sk^α) lies above the 45-degree line ((n + δ)k), the economy is experiencing capital deepening, where the capital stock per worker is increasing over time.</p>
-            </li>
-            <li>
-                <p>Capital widening: If the investment per worker curve (sk^α) lies below the 45-degree line ((n + δ)k), the economy is experiencing capital widening, where the capital stock per worker is decreasing over time.</p>
-            </li>
-            <li>
-                <p>Interpreting the values:
-                    <ul>
-                        <li>k: Capital per worker</li>
-                        <li>y: Output per worker</li>
-                        <li>α (alpha): The output elasticity of capital, representing the percentage change in output for a given percentage change in capital input</li>
-                        <li>s: The savings rate, determining the fraction of output invested in capital formation</li>
-                        <li>n: The population growth rate, affecting the growth rate of the labor force</li>
-                        <li>δ (delta): The depreciation rate of capital</li>
-                    </ul>
+                <p>Steady state: In the steady state, the capital stock and output per worker are constant over time.
+                    This occurs when the investment per worker curve (sk^α) intersects the 45-degree line ((n + δ)k).
                 </p>
             </li>
             <li>
-                <p>Example: Suppose an economy has α = 0.3, K = 3, L = 20, w = 18, s = 25%, and n = 5%. With these values, the steady-state output per worker (y) is approximately 1.45, and the steady-state capital per worker (k) is around 2.9. If the capital per worker is below 2.9, the economy will experience capital deepening until it reaches the steady state.</p>
+                <p>Capital deepening: If the investment per worker curve (sk^α) lies above the 45-degree line ((n +
+                    δ)k), the economy is experiencing capital deepening, where the capital stock per worker is
+                    increasing over time.</p>
+            </li>
+            <li>
+                <p>Capital widening: If the investment per worker curve (sk^α) lies below the 45-degree line ((n + δ)k),
+                    the economy is experiencing capital widening, where the capital stock per worker is decreasing over
+                    time.</p>
+            </li>
+            <li>
+                <p>Interpreting the values:
+                <ul>
+                    <li>k: Capital per worker</li>
+                    <li>y: Output per worker</li>
+                    <li>α (alpha): The output elasticity of capital, representing the percentage change in output for a
+                        given percentage change in capital input</li>
+                    <li>s: The savings rate, determining the fraction of output invested in capital formation</li>
+                    <li>n: The population growth rate, affecting the growth rate of the labor force</li>
+                    <li>δ (delta): The depreciation rate of capital</li>
+                </ul>
+                </p>
+            </li>
+            <li>
+                <p>Example: Suppose an economy has α = 0.3, K = 3, L = 20, w = 18, s = 25%, and n = 5%. With these
+                    values, the steady-state output per worker (y) is approximately 1.45, and the steady-state capital
+                    per worker (k) is around 2.9. If the capital per worker is below 2.9, the economy will experience
+                    capital deepening until it reaches the steady state.</p>
             </li>
         </ol>
     </div>
@@ -129,19 +142,19 @@
             .style("text-anchor", "middle")
             .text("Output per Worker (y)");
 
-            const productioncurve = d3.line()
-                .x(d => xScale(d.k))
-                .y(d => yScale(d.y));
+        const productioncurve = d3.line()
+            .x(d => xScale(d.k))
+            .y(d => yScale(d.y));
 
-            const investmentcurve = d3.line()
-                .x(d => xScale(d.k))
-                .y(d => yScale(d.s));
+        const investmentcurve = d3.line()
+            .x(d => xScale(d.k))
+            .y(d => yScale(d.s));
 
-            const steadystatecurve = d3.line()
-                .x(d => xScale(d.k))
-                .y(d => yScale(d.n_delta));
+        const steadystatecurve = d3.line()
+            .x(d => xScale(d.k))
+            .y(d => yScale(d.n_delta));
 
-            const updateChart = () => {
+        const updateChart = () => {
             const alpha = parseFloat(d3.select("#alpha").property("value"));
             const K = parseInt(d3.select("#K").property("value"));
             const L = parseInt(d3.select("#L").property("value"));
@@ -173,94 +186,95 @@
                 .transition()
                 .duration(transitionDuration)
                 .call(xAxis);
-            
+
             svg.select(".y.axis")
                 .transition()
                 .duration(transitionDuration)
                 .call(yAxis);
 
 
-        const prodcurvePath = svg.selectAll(".prodcurve")
-            .data([data])
-            .join("path")
-            .attr("class", "line prodcurve")
-            .attr("d", productioncurve)
-            .attr("stroke", "steelblue")
-            .attr("fill", "none")
-            .transition()
-            .duration(transitionDuration)
-            .attrTween("d", function (d) {
-                const previous = d3.select(this).attr("d");
-                const current = productioncurve(d);
-                return d3.interpolatePath(previous, current);
-           });
+            const prodcurvePath = svg.selectAll(".prodcurve")
+                .data([data])
+                .join("path")
+                .attr("class", "line prodcurve")
+                .attr("d", productioncurve)
+                .attr("stroke", "steelblue")
+                .attr("fill", "none")
+                .transition()
+                .duration(transitionDuration)
+                .attrTween("d", function (d) {
+                    const previous = d3.select(this).attr("d");
+                    const current = productioncurve(d);
+                    return d3.interpolatePath(previous, current);
+                });
 
-           const investcurvePath = svg.selectAll(".investcurve")
-            .data([data])
-            .join("path")
-            .attr("class", "line investcurve")
-            .attr("d", investmentcurve)
-            .attr("stroke", "green")
-            .attr("fill", "none")
-            .transition()
-            .duration(transitionDuration)
-            .attrTween("d", function (d) {
-                const previous = d3.select(this).attr("d");
-                const current = investmentcurve(d);
-                return d3.interpolatePath(previous, current);
-           });
+            const investcurvePath = svg.selectAll(".investcurve")
+                .data([data])
+                .join("path")
+                .attr("class", "line investcurve")
+                .attr("d", investmentcurve)
+                .attr("stroke", "green")
+                .attr("fill", "none")
+                .transition()
+                .duration(transitionDuration)
+                .attrTween("d", function (d) {
+                    const previous = d3.select(this).attr("d");
+                    const current = investmentcurve(d);
+                    return d3.interpolatePath(previous, current);
+                });
 
-           const steadystatePath = svg.selectAll(".steadystate")
-            .data([data])
-            .join("path")
-            .attr("class", "line steadystate")
-            .attr("d", steadystatecurve)
-            .attr("stroke", "red")
-            .attr("fill", "none")
-            .transition()
-            .duration(transitionDuration)
-            .attrTween("d", function (d) {
-                const previous = d3.select(this).attr("d");
-                const current = steadystatecurve(d);
-                return d3.interpolatePath(previous, current);
-           });
+            const steadystatePath = svg.selectAll(".steadystate")
+                .data([data])
+                .join("path")
+                .attr("class", "line steadystate")
+                .attr("d", steadystatecurve)
+                .attr("stroke", "red")
+                .attr("fill", "none")
+                .transition()
+                .duration(transitionDuration)
+                .attrTween("d", function (d) {
+                    const previous = d3.select(this).attr("d");
+                    const current = steadystatecurve(d);
+                    return d3.interpolatePath(previous, current);
+                });
 
-           const currentK = svg.selectAll(".currentK")
-            .data([{ k: k }])
-            .join("line")
-            .attr("class", "currentK")
-            .attr("x1", d => xScale(d.k))
-            .attr("x2", d => xScale(d.k))
-            .attr("y1", 0)
-            .attr("y2", height)
-            .attr("stroke", "black")
-            .attr("stroke-dasharray", "5,5")
-            .transition()
-            .duration(transitionDuration)
-            .attr("x1", d => xScale(d.k))
-            .attr("x2", d => xScale(d.k));
+            const currentK = svg.selectAll(".currentK")
+                .data([{ k: k }])
+                .join("line")
+                .attr("class", "currentK")
+                .attr("x1", d => xScale(d.k))
+                .attr("x2", d => xScale(d.k))
+                .attr("y1", 0)
+                .attr("y2", height)
+                .attr("stroke", "black")
+                .attr("stroke-dasharray", "5,5")
+                .transition()
+                .duration(transitionDuration)
+                .attr("x1", d => xScale(d.k))
+                .attr("x2", d => xScale(d.k));
 
             const annotation = svg.selectAll(".annotation")
-            .data([{ k: k, k_dot: k_dot }])
-            .join("text")
-            .attr("class", "annotation")
-            .attr("x", width * 0.1)
-            .attr("y", height * 0.9)
-            .text(d => {
-                if (d.k_dot > 0) {
-                    return "Capital deepening";
-                } else if (d.k_dot < 0) {
-                    return "Capital widening";
-                } else {
-                    return "Steady state";
-                }
-            });
-   };
+                .data([{ k: k, k_dot: k_dot }])
+                .join("text")
+                .attr("class", "annotation")
+                .attr("x", width * 0.1)
+                .attr("y", height * 0.9)
+                .text(d => {
+                    if (d.k_dot > 0) {
+                        return "Capital deepening";
+                    } else if (d.k_dot < 0) {
+                        return "Capital widening";
+                    } else {
+                        return "Steady state";
+                    }
+                });
+        };
 
-    d3.selectAll("input")
-        .on("input", updateChart);
+        d3.selectAll("input")
+            .on("input", updateChart);
 
-    updateChart();
-</script>
+        updateChart();
+    </script>
 </body>
+
 </html>
