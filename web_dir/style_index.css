@@ -1,26 +1,18 @@
-.regular {
-    
+
+.basic_hp {
+    margin-left: 45px;
+    margin-right: 90px;
+    font-size: 18px;
 }
 
-#list_regular {
-    font-family: 'Times New Roman', Times, serif;
-    color: black;
-    font-size:20px;
-}
 
-h1{
-    text-align: center;
-    font-family: sans-serif;
-    text-decoration: underline;
-}
 
-#solow_quote {
-    font-family:serif, Helvetica, sans-serif;
-    text-align: center;
-    font-weight: italic;
-    font-size: 20px
-}
-
-.concept {font-style: none;
+.basic_quote {
     font-size: 20px;
-    text-decoration: underline;}
+    font-family: serif;
+
+}
+
+.basic_list {
+    font-size: 22px;
+}
