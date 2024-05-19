@@ -1,13 +1,3 @@
-body {
-    text-align: center;
-    background-color: #f9f9f9;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-h1 {
-    color: #333;
-}
-
 #chart svg {
     width: 800px;
     height: 600px;
@@ -53,13 +43,6 @@ h1 {
 .k_dot_text,
 .k_eq_text {
     font-size: 14px;
-}
-
-#equations,
-#explanation {
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
 }
 
 /* Navigation styles */
