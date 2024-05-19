@@ -74,7 +74,7 @@
             <p class='regp'>
                 <b style='text-decoration: underline; font-size: 24px;'>Output</b>- This can be thought of as the
                 collection of output produced by the nation. We give the <b><i>rate</i></b> of it's production by <b
-                    style='font-family: segoe UI'>Y( t )</b> - which denotes the amount of output produced in a unit of
+                    style='font-family: segoe UI'>\( Y(t) \)</b> - which denotes the amount of output produced in a unit of
                 time. This can also be thought of as the GDP. On the other hand production possibilities are represented
                 by the function<br><br>
 
@@ -92,7 +92,7 @@
         <li>
             <p class='regp'>
                 <b style='text-decoration: underline; font-size: 24px;'>Depreciation</b> - We denote the rate of
-                depreciation by δ. Another approach would be to subsume depreciation in the output itself (which
+                depreciation by \( \delta \). Another approach would be to subsume depreciation in the output itself (which
                 is how Solow does in his 1956 paper), but he former is
                 more lucid. The rate of depreciation is constant.
             </p>
@@ -101,8 +101,8 @@
         <li>
             <p class='regp'>
                 <b style='text-decoration: underline; font-size: 24px;'>Capital Stock</b> - The Capital Stock, denoted
-                by K(t), can be thought of as the accumulation of the composite commodity over time- the rate of which
-                is given by kdot. kdot can be thought of as the
+                by \( K(t) \), can be thought of as the accumulation of the composite commodity over time- the rate of which
+                is given by \( \dot{K}\). <br><br>\( \dot{K}\) can be thought of as the
                 rate of investment. Here, we make the assumption of full employment of capital stock. That is, at any
                 point of time, the pre-existing stock of capital is inelastically supplied.
             </p>
@@ -119,58 +119,64 @@
         condition</h1>
     <br><br>
 
-    <p class = 'regp'>This is the derivation of the equilibrium equation.<br></p>
+    <p class='regp'>This is the derivation of the equilibrium equation.<br></p>
 
-    <p class = 'regp'>We assume that a constant part of the output produced is saved and subsequently invested. That is,</p>
+    <p class='regp'>We assume that a constant part of the output produced is saved and subsequently invested. That is,
+    </p>
 
-    <p style = 'text-align: center'>\( S = s \cdot Y \)</p>
+    <p style='text-align: center'>\( S = s \cdot Y \)</p>
 
-    <p class = 'regp'>We know that in neoclassical theory, planned savings is equal to planned investment.</p>
+    <p class='regp'>We know that in neoclassical theory, planned savings is equal to planned investment.</p>
 
-    <p class = 'regp'>Now, planned investment - given by \(\dot{K}\) - can be obtained by subtracting depreciation from savings</p>
+    <p class='regp'>Now, planned investment - given by \(\dot{K}\) - can be obtained by subtracting depreciation from
+        savings</p>
 
-    <p class = 'regp'>\( \dot{K} = s \cdot F(K, L) - D \quad \text{...(1)} \)</p>
+    <p class='regp'>\( \dot{K} = s \cdot F(K, L) - D \quad \text{...(1)} \)</p>
 
-    <p class = 'regp'>where depreciation occurs as a certain percentage of capital stock. That is \( D = \delta \cdot K \)</p>
-    <p class = 'regp'>We assume the labor grows exponentially at the rate \( n \):</p>
+    <p class='regp'>where depreciation occurs as a certain percentage of capital stock. That is \( D = \delta \cdot K \)
+    </p>
+    <p class='regp'>We assume the labor grows exponentially at the rate \( n \):</p>
 
-    <p style = 'text-align: center'>\( L(t) = L_0 \cdot e^{nt} \quad \text{...(2)} \)</p>
+    <p style='text-align: center'>\( L(t) = L_0 \cdot e^{nt} \quad \text{...(2)} \)</p>
 
-    <p class = 'regp'>Substituting in (1), we get</p>
+    <p class='regp'>Substituting in (1), we get</p>
 
-    <p style = 'text-align: center'>\( \dot{K} = s \cdot F(K, L_0 e^{nt}) - \delta \cdot K \)</p>
+    <p style='text-align: center'>\( \dot{K} = s \cdot F(K, L_0 e^{nt}) - \delta \cdot K \)</p>
 
-    <p class = 'regp'>Now, we define a new variable \( r \), where \( r = \frac{K}{L} \) is the capital-labor ratio, or the capital per
+    <p class='regp'>Now, we define a new variable \( r \), where \( r = \frac{K}{L} \) is the capital-labor ratio, or
+        the capital per
         labor. We try to express (3) in terms of one variable \( r \).</p>
 
-    <p style = 'text-align: center'>\( r = \frac{K}{L} \)</p>
+    <p style='text-align: center'>\( r = \frac{K}{L} \)</p><br>
 
-    <p style = 'text-align: center'>\( K = r \cdot L \)</p>
+    <p style='text-align: center'>\( K = r \cdot L \)</p>
 
-    <p class = 'regp'>Substituting \( L \) from (2):</p>
+    <p class='regp'>Substituting \( L \) from (2):</p>
 
-    <p style = 'text-align: center'>\( K = r \cdot L_0 e^{nt} \)</p>
+    <p style='text-align: center'>\( K = r \cdot L_0 e^{nt} \)</p>
 
-    <p class = 'regp'>Differentiating \( K \) with respect to \( t \), we get:</p>
+    <p class='regp'>Differentiating \( K \) with respect to \( t \), we get:</p>
 
-    <p style = 'text-align: center'>\( \dot{K} = r \cdot n \cdot L_0 e^{nt} + \dot{r} \cdot L_0 e^{nt} \)</p>
+    <p style='text-align: center'>\( \dot{K} = r \cdot n \cdot L_0 e^{nt} + \dot{r} \cdot L_0 e^{nt} \)</p>
 
-    <p class = 'regp'>Factoring out \( L_0 e^{nt} \):</p>
+    <p class='regp'>Factoring out \( L_0 e^{nt} \):</p>
 
-    <p style = 'text-align: center'>\( \dot{K} = L_0 e^{nt} \cdot (r \cdot n + \dot{r}) \)</p>
+    <p style='text-align: center'>\( \dot{K} = L_0 e^{nt} \cdot (r \cdot n + \dot{r}) \)</p>
 
-    <p class = 'regp'>From (1), we have:</p>
+    <p class='regp'>From (1), we have:</p>
 
-    <p style = 'text-align: center'>\( s \cdot F(K, L) - \delta \cdot K = L_0 e^{nt} \cdot (r \cdot n + \dot{r}) \)</p>
-    <p class = 'regp'>Now, we divide both sides by \( L \). Since \( F \) is a homogeneous function of the first degree, we get</p>
+    <p style='text-align: center'>\( s \cdot F(K, L) - \delta \cdot K = L_0 e^{nt} \cdot (r \cdot n + \dot{r}) \)</p>
+    <p class='regp'>Now, we divide both sides by \( L \). Since \( F \) is a homogeneous function of the first degree,
+        we get</p>
 
-    <p style = 'text-align: center'>\( s \cdot F(r, 1) - \delta \cdot K = r(n + \dot{r}) \)</p>
+    <p style='text-align: center'>\( s \cdot F(r, 1) - \delta \cdot K = r(n + \dot{r}) \)</p>
 
-    <p class = 'regp'>Simplifying, we get:</p>
+    <p class='regp'>Simplifying, we get:</p>
 
-    <p style = 'text-align: center'>\( \dot{r} = s \cdot F(r, 1) - r(n + \delta) \quad \text{...(5)} \)</p>
+    <p style='text-align: center'>\( \dot{r} = s \cdot F(r, 1) - r(n + \delta) \quad \text{...(5)} \)</p>
 
-    <p class = 'regp'>Equation (5) is our final equation. This equation is the equilibrium condition. Upon a closer look, on the RHS,
+    <p class='regp'>Equation (5) is our final equation. This equation is the equilibrium condition. Upon a closer look,
+        on the RHS,
         the \( F(r, 1) \) component is the output per labor, and \( s \cdot F(r, 1) \) is the savings per labor. The
         second term \( r n \) is the rate of growth of investment. Equation (5) basically states that the "growth rate
         in savings must be equal to the growth rate of investment in order to achieve equilibrium."</p>
