@@ -18,6 +18,8 @@
         
     }
     </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body style='margin-left: 50px; text-align: justify; font-family: calibri ; font-size: 22px'>
@@ -122,14 +124,56 @@
 
 <p style = 'margin-left: 30px'>This is the derivation of the equilibrium equation.<br></p>
 
-<p style="margin-left: 30px">We assume that a <i style = 'font-style: italic;color: blue'>constant part of the output is saved</i>. This proportion is given by <i><b style = 'color:purple'>s</b></i>. Thus, we have:</p>
-<p style="text-align: center;font-family: Times New Roman">Savings = <b style = 'color: purple'>s</b>・Y</p>
-<p>From (1), we have</p>
-<p class = 'equation_wn'> Savings = <b style = 'color: purple'>s</b>・F ( K , L )</p>
-<br>
-<p>Neoclassical theory assumes planned savings to be equal to planned investment.</p>
-<br>
-<p>Now, planned investment- given by <span class = 'maths'>K</span> 
+<p>We assume that a constant part of the output produced is saved and subsequently invested. That is,</p>
+
+<p style="text-align: center;">\( S = s \cdot Y \)</p>
+
+<p>We know that in neoclassical theory, planned savings is equal to planned investment.</p>
+
+<p>Now, planned investment - given by \(\dot{K}\) - can be obtained by subtracting depreciation from savings</p>
+
+<p style="text-align: center;">\( \dot{K} = s \cdot F(K, L) - D \quad \text{...(1)} \)</p>
+
+<p>where depreciation occurs as a certain percentage of capital stock. That is \( D = \delta \cdot K \)</p>
+<p>We assume the labor grows exponentially at the rate \( n \):</p>
+
+<p style="text-align: center;">\( L(t) = L_0 \cdot e^{nt} \quad \text{...(2)} \)</p>
+
+<p>Substituting in (1), we get</p>
+
+<p style="text-align: center;">\( \dot{K} = s \cdot F(K, L_0 e^{nt}) - \delta \cdot K \)</p>
+
+<p>Now, we define a new variable \( r \), where \( r = \frac{K}{L} \) is the capital-labor ratio, or the capital per labor. We try to express (3) in terms of one variable \( r \).</p>
+
+<p>\( r = \frac{K}{L} \)</p>
+
+<p>\( K = r \cdot L \)</p>
+
+<p>Substituting \( L \) from (2):</p>
+
+<p>\( K = r \cdot L_0 e^{nt} \)</p>
+
+<p>Differentiating \( K \) with respect to \( t \), we get:</p>
+
+<p style="text-align: center;">\( \dot{K} = r \cdot n \cdot L_0 e^{nt} + \dot{r} \cdot L_0 e^{nt} \)</p>
+
+<p>Factoring out \( L_0 e^{nt} \):</p>
+
+<p style="text-align: center;">\( \dot{K} = L_0 e^{nt} \cdot (r \cdot n + \dot{r}) \)</p>
+
+<p>From (1), we have:</p>
+
+<p style="text-align: center;">\( s \cdot F(K, L) - \delta \cdot K = L_0 e^{nt} \cdot (r \cdot n + \dot{r}) \)</p>
+<p>Now, we divide both sides by \( L \). Since \( F \) is a homogeneous function of the first degree, we get</p>
+
+<p style="text-align: center;">\( s \cdot F(r, 1) - \delta \cdot K = r(n + \dot{r}) \)</p>
+
+<p>Simplifying, we get:</p>
+
+<p style="text-align: center;">\( \dot{r} = s \cdot F(r, 1) - r(n + \delta) \quad \text{...(5)} \)</p>
+
+<p>Equation (5) is our final equation. This equation is the equilibrium condition. Upon a closer look, on the RHS, the \( F(r, 1) \) component is the output per labor, and \( s \cdot F(r, 1) \) is the savings per labor. The second term \( r n \) is the rate of growth of investment. Equation (5) basically states that the "growth rate in savings must be equal to the growth rate of investment in order to achieve equilibrium."</p>
+
 
 </body>
 
