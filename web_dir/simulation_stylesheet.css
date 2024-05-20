@@ -47,8 +47,10 @@
 
 /* Navigation styles */
 nav {
-    background-color: black; /* Changed background color to black */
-    color: #fff; /* Changed text color to white */
+    background-color: black;
+    /* Changed background color to black */
+    color: #fff;
+    /* Changed text color to white */
     padding: 10px;
 }
 
@@ -96,7 +98,8 @@ nav {
         top: 60px;
         left: 0;
         width: 100%;
-        background-color: black; /* Changed background color to black */
+        background-color: black;
+        /* Changed background color to black */
         padding: 20px;
     }
 
